@@ -21,11 +21,15 @@ final class DefaultStorageManager: StorageManager {
     }
     
     func string(forKey key: UserDefaultsKey) -> String? {
-        defaults.string(forKey: key.rawValue)
+        queue.sync { [weak self] in
+            return self?.defaults.string(forKey: key.rawValue)
+        }
     }
 
     func bool(forKey key: UserDefaultsKey) -> Bool {
-        defaults.bool(forKey: key.rawValue)
+        queue.sync { [weak self] in
+            return self?.defaults.bool(forKey: key.rawValue) ?? false
+        }
     }
 
     func set(_ value: Any?, forKey key: UserDefaultsKey) {

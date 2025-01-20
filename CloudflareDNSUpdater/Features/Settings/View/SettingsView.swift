@@ -16,16 +16,23 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Cloudflare Settings")) {
-                SecureField("API Token", text: $apiToken)
-                TextField("Zone ID", text: $zoneId)
+            Section(
+                header: Text("settingsView_cloudflareSettings".localized())
+            ) {
+                SecureField(
+                    "settingsView_apiToken".localized(),
+                    text: $apiToken
+                )
+                TextField("settingsView_zoneId".localized(), text: $zoneId)
             }
             
-            Section(header: Text("Application Settings")) {
-                Toggle("Launch at Login", isOn: $launchAtLogin)
-                    .onChange(of: launchAtLogin, initial: launchAtLogin, { oldValue, newValue in
-                        // Implement launch at login functionality
-                    })
+            Section(
+                header: Text("settingsView_applicationSettings".localized())
+            ) {
+                Toggle(
+                    "settingsView_launchAtLogin".localized(),
+                    isOn: $launchAtLogin
+                )
             }
         
         }
@@ -33,7 +40,7 @@ struct SettingsView: View {
         .frame(width: 400, height: 300)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Close") {
+                Button("general_closeButton".localized()) {
                     dismiss()
                 }
             }

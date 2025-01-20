@@ -8,9 +8,8 @@
 import Foundation
 
 protocol DispatchQueueProtocol: AnyObject {
-    @preconcurrency
-    func async(
-        execute work: @escaping @Sendable () -> Void
-    )
+    func async(_ block: @escaping @Sendable () -> Void)
+    func asyncAfter(deadline: DispatchTime, _ work: @escaping () -> Void)
     func sync(execute block: () -> Void)
+    func sync<T>(execute work: () throws -> T) rethrows -> T
 }

@@ -8,7 +8,12 @@
 import Foundation
 
 extension DispatchQueue: DispatchQueueProtocol {
-    func async(execute work: @escaping @Sendable () -> Void) {
+    
+    func asyncAfter(deadline: DispatchTime, _ work: @escaping () -> Void) {
+        asyncAfter(deadline: deadline, execute: work)
+    }
+
+    func async(_ work: @escaping @Sendable () -> Void) {
         async(group: .none, execute: work)
     }
 }

@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  CloudflareDNSUpdater
+
+  Created by João Moreira on 20/01/2025.
+  
+*/
+
+general_closeButton = "Close";
+general_cancelButton = "Cancel";
+general_deleteButton = "Delete";
+
+mainView_title = "DNS Records";
+mainView_noRecordSelected = "Select a DNS record";
+
+settingsView_cloudflareSettings = "Cloudflare Settings";
+settingsView_apiToken = "API Token";
+settingsView_zoneId = "Zone ID";
+settingsView_applicationSettings = "Application Settings";
+settingsView_launchAtLogin = "Launch at Login";
+
+recordDetailsView_recordDetails = "Record Details";
+recordDetailsView_name = "Name";
+recordDetailsView_type = "Type";
+recordDetailsView_content = "Content";
+recordDetailsView_ttl = "TTL:";
+recordDetailsView_proxied = "Proxied";
+recordDetailsView_autoUpdate = "Auto-update IP Address";
+recordDetailsView_updateRecord = "Update Record";
+recordDetailsView_deleteRecord = "Delete Record";
+
+alertView_deleteRecordTitle = "Delete DNS Record";
+alertView_youSureDeleteRecord = "Are you sure you want to delete this DNS record? This action cannot be undone.";

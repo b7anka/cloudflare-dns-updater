@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  CloudflareDNSUpdater
+
+  Created by João Moreira on 20/01/2025.
+  
+*/
+
+general_closeButton = "Schließen";
+general_cancelButton = "Abbrechen";
+general_deleteButton = "Löschen";
+mainView_title = "DNS-Einträge";
+mainView_noRecordSelected = "DNS-Eintrag auswählen";
+settingsView_cloudflareSettings = "Cloudflare-Einstellungen";
+settingsView_apiToken = "API-Token";
+settingsView_zoneId = "Zonen-ID";
+settingsView_applicationSettings = "Anwendungseinstellungen";
+settingsView_launchAtLogin = "Beim Anmelden starten";
+recordDetailsView_recordDetails = "Eintragsdetails";
+recordDetailsView_name = "Name";
+recordDetailsView_type = "Typ";
+recordDetailsView_content = "Inhalt";
+recordDetailsView_ttl = "TTL:";
+recordDetailsView_proxied = "Über Proxy";
+recordDetailsView_autoUpdate = "IP-Adresse automatisch aktualisieren";
+recordDetailsView_updateRecord = "Eintrag aktualisieren";
+recordDetailsView_deleteRecord = "Eintrag löschen";
+alertView_deleteRecordTitle = "DNS-Eintrag löschen";
+alertView_youSureDeleteRecord = "Sind Sie sicher, dass Sie diesen DNS-Eintrag löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";

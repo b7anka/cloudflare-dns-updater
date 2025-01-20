@@ -34,16 +34,31 @@ struct DNSRecordDetailView: View {
     
     var body: some View {
         Form {
-            Section("Record Details") {
-                TextField("Name", text: $editedName)
-                TextField("Type", text: $editedType)
-                TextField("Content", text: $editedContent)
-                Stepper("TTL: \(editedTTL)", value: $editedTTL, in: 1...86400)
-                Toggle("Proxied", isOn: $editedProxied)
+            Section("recordDetailsView_recordDetails".localized()) {
+                TextField(
+                    "recordDetailsView_name".localized(),
+                    text: $editedName
+                )
+                TextField(
+                    "recordDetailsView_type".localized(),
+                    text: $editedType
+                )
+                TextField(
+                    "recordDetailsView_content".localized(),
+                    text: $editedContent
+                )
+                Stepper("\("recordDetailsView_ttl".localized()) \(editedTTL)", value: $editedTTL, in: 1...86400)
+                Toggle(
+                    "recordDetailsView_proxied".localized(),
+                    isOn: $editedProxied
+                )
                 
                 
                 if record.type == RecordType.a.rawValue {
-                    Toggle("Auto-update IP Address", isOn: $autoUpdate)
+                    Toggle(
+                        "recordDetailsView_autoUpdate".localized(),
+                        isOn: $autoUpdate
+                    )
                         .onChange(of: autoUpdate) { oldValue, newValue in
                             if newValue {
                                 // Add to auto-update list
@@ -73,7 +88,7 @@ struct DNSRecordDetailView: View {
                     Button(action: updateRecord) {
                         HStack {
                             Image(systemName: "arrow.up.circle.fill")
-                            Text("Update Record")
+                            Text("recordDetailsView_updateRecord".localized())
                         }
                     }
                     .disabled(appState.isLoading)
@@ -83,7 +98,7 @@ struct DNSRecordDetailView: View {
                     Button(role: .destructive, action: { showingDeleteAlert = true }) {
                         HStack {
                             Image(systemName: "trash.fill")
-                            Text("Delete Record")
+                            Text("recordDetailsView_deleteRecord".localized())
                         }
                     }
                     .disabled(appState.isLoading)
@@ -93,13 +108,16 @@ struct DNSRecordDetailView: View {
         .formStyle(.grouped)
         .padding()
         .navigationTitle(record.nameOrNoValue)
-        .alert("Delete DNS Record", isPresented: $showingDeleteAlert) {
-            Button("Cancel", role: .cancel) { }
-            Button("Delete", role: .destructive) {
+        .alert(
+            "alertView_deleteRecordTitle".localized(),
+            isPresented: $showingDeleteAlert
+        ) {
+            Button("general_cancelButton".localized(), role: .cancel) { }
+            Button("general_deleteButton".localized(), role: .destructive) {
                 deleteRecord()
             }
         } message: {
-            Text("Are you sure you want to delete this DNS record? This action cannot be undone.")
+            Text("alertView_youSureDeleteRecord".localized())
         }
         .overlay {
             if appState.isLoading {

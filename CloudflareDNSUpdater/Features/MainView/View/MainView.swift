@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $appState.selectedRecordId) {
-                Section("DNS Records") {
+                Section("mainView_title".localized()) {
                     ForEach(appState.dnsRecords) { record in
                         NavigationLink(value: record.id) {
                             DNSRecordRow(record: record)
@@ -44,7 +44,7 @@ struct MainView: View {
                let record = appState.dnsRecords.first(where: { $0.id == recordId }) {
                 DNSRecordDetailView(record: record)
             } else {
-                Text("Select a DNS record")
+                Text("mainView_noRecordSelected".localized())
                     .foregroundColor(.secondary)
             }
         }
