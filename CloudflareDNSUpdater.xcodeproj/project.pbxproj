@@ -6,6 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		46BFF7C42D3F9084000D283F /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF7C32D3F9084000D283F /* Quick */; };
+		46BFF7CD2D3F90E3000D283F /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF7CC2D3F90E3000D283F /* Quick */; };
+		46BFF8622D3F9226000D283F /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF8612D3F9226000D283F /* Nimble */; };
+		46BFF8642D3F9229000D283F /* Mimus in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF8632D3F9229000D283F /* Mimus */; };
+		46BFF8662D3F9235000D283F /* Mimus in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF8652D3F9235000D283F /* Mimus */; };
+		46BFF8682D3F9238000D283F /* Nimble-Snapshots in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF8672D3F9238000D283F /* Nimble-Snapshots */; };
+		46BFF86A2D3F923B000D283F /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF8692D3F923B000D283F /* Nimble */; };
+		46BFF8FD2D3F929C000D283F /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 46BFF8FC2D3F929C000D283F /* ViewInspector */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4660782C2D3BDEE400BFD7B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -59,6 +70,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46BFF8642D3F9229000D283F /* Mimus in Frameworks */,
+				46BFF7C42D3F9084000D283F /* Quick in Frameworks */,
+				46BFF8622D3F9226000D283F /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +80,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46BFF8662D3F9235000D283F /* Mimus in Frameworks */,
+				46BFF86A2D3F923B000D283F /* Nimble in Frameworks */,
+				46BFF8FD2D3F929C000D283F /* ViewInspector in Frameworks */,
+				46BFF7CD2D3F90E3000D283F /* Quick in Frameworks */,
+				46BFF8682D3F9238000D283F /* Nimble-Snapshots in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +97,7 @@
 				4660781C2D3BDEE400BFD7B5 /* CloudflareDNSUpdater */,
 				4660782E2D3BDEE400BFD7B5 /* CloudflareDNSUpdaterTests */,
 				466078382D3BDEE400BFD7B5 /* CloudflareDNSUpdaterUITests */,
+				46BFF7CB2D3F90E3000D283F /* Frameworks */,
 				4660781B2D3BDEE400BFD7B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +110,13 @@
 				466078352D3BDEE400BFD7B5 /* CloudflareDNSUpdaterUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		46BFF7CB2D3F90E3000D283F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +162,9 @@
 			);
 			name = CloudflareDNSUpdaterTests;
 			packageProductDependencies = (
+				46BFF7C32D3F9084000D283F /* Quick */,
+				46BFF8612D3F9226000D283F /* Nimble */,
+				46BFF8632D3F9229000D283F /* Mimus */,
 			);
 			productName = CloudflareDNSUpdaterTests;
 			productReference = 4660782B2D3BDEE400BFD7B5 /* CloudflareDNSUpdaterTests.xctest */;
@@ -158,6 +188,11 @@
 			);
 			name = CloudflareDNSUpdaterUITests;
 			packageProductDependencies = (
+				46BFF7CC2D3F90E3000D283F /* Quick */,
+				46BFF8652D3F9235000D283F /* Mimus */,
+				46BFF8672D3F9238000D283F /* Nimble-Snapshots */,
+				46BFF8692D3F923B000D283F /* Nimble */,
+				46BFF8FC2D3F929C000D283F /* ViewInspector */,
 			);
 			productName = CloudflareDNSUpdaterUITests;
 			productReference = 466078352D3BDEE400BFD7B5 /* CloudflareDNSUpdaterUITests.xctest */;
@@ -198,6 +233,13 @@
 			);
 			mainGroup = 466078112D3BDEE400BFD7B5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				46BFF7C22D3F9084000D283F /* XCRemoteSwiftPackageReference "Quick" */,
+				46BFF7CE2D3F91E7000D283F /* XCRemoteSwiftPackageReference "Nimble" */,
+				46BFF7CF2D3F91F2000D283F /* XCRemoteSwiftPackageReference "Nimble-Snapshots" */,
+				46BFF7D02D3F920C000D283F /* XCRemoteSwiftPackageReference "Mimus" */,
+				46BFF86B2D3F927F000D283F /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4660781B2D3BDEE400BFD7B5 /* Products */;
 			projectDirPath = "";
@@ -552,6 +594,92 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		46BFF7C22D3F9084000D283F /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.6.2;
+			};
+		};
+		46BFF7CE2D3F91E7000D283F /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.7.1;
+			};
+		};
+		46BFF7CF2D3F91F2000D283F /* XCRemoteSwiftPackageReference "Nimble-Snapshots" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashfurrow/Nimble-Snapshots";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.8.0;
+			};
+		};
+		46BFF7D02D3F920C000D283F /* XCRemoteSwiftPackageReference "Mimus" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mimus-swift/Mimus.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+		46BFF86B2D3F927F000D283F /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		46BFF7C32D3F9084000D283F /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7C22D3F9084000D283F /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		46BFF7CC2D3F90E3000D283F /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7C22D3F9084000D283F /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		46BFF8612D3F9226000D283F /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7CE2D3F91E7000D283F /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		46BFF8632D3F9229000D283F /* Mimus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7D02D3F920C000D283F /* XCRemoteSwiftPackageReference "Mimus" */;
+			productName = Mimus;
+		};
+		46BFF8652D3F9235000D283F /* Mimus */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7D02D3F920C000D283F /* XCRemoteSwiftPackageReference "Mimus" */;
+			productName = Mimus;
+		};
+		46BFF8672D3F9238000D283F /* Nimble-Snapshots */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7CF2D3F91F2000D283F /* XCRemoteSwiftPackageReference "Nimble-Snapshots" */;
+			productName = "Nimble-Snapshots";
+		};
+		46BFF8692D3F923B000D283F /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF7CE2D3F91E7000D283F /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+		46BFF8FC2D3F929C000D283F /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46BFF86B2D3F927F000D283F /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 466078122D3BDEE400BFD7B5 /* Project object */;
 }
