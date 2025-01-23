@@ -12,8 +12,12 @@ struct HTTPHeader {
     let key: String
     let value: String
     
-    func toKeyValuePair() -> (key: String, value: String) {
-        return (key, value)
+}
+
+extension HTTPHeader: Equatable {
+    
+    static func == (lhs: HTTPHeader, rhs: HTTPHeader) -> Bool {
+        return lhs.key == rhs.key && lhs.value == rhs.value
     }
     
 }

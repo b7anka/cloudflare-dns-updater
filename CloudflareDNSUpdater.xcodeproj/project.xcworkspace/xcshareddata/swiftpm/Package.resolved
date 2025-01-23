@@ -1,5 +1,5 @@
 {
-  "originHash" : "3a0dd401196550616287828571a75e5f75fbf9fd05bfcd8f5e18e04b0af8376c",
+  "originHash" : "40b05e97ac38117e2061b2ac713a2067d549cdf91dcac710b0e37d5464d3dd61",
   "pins" : [
     {
       "identity" : "cwlcatchexception",
@@ -20,15 +20,6 @@
       }
     },
     {
-      "identity" : "ios-snapshot-test-case",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/uber/ios-snapshot-test-case.git",
-      "state" : {
-        "revision" : "7b10770333a961be6e5a41c9ce04b8c6d3990126",
-        "version" : "8.0.0"
-      }
-    },
-    {
       "identity" : "mimus",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mimus-swift/Mimus.git",
@@ -44,15 +35,6 @@
       "state" : {
         "revision" : "7795df4fff1a9cd231fe4867ae54f4dc5f5734f9",
         "version" : "13.7.1"
-      }
-    },
-    {
-      "identity" : "nimble-snapshots",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ashfurrow/Nimble-Snapshots",
-      "state" : {
-        "revision" : "6aba4acd318d2aae8158b5f8829a4329d023ce54",
-        "version" : "9.8.0"
       }
     },
     {
