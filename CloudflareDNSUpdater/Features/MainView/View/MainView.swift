@@ -42,7 +42,7 @@ struct MainView: View {
         } detail: {
             if let recordId = appState.selectedRecordId,
                let record = appState.dnsRecords.first(where: { $0.id == recordId }) {
-                DNSRecordDetailView(record: record)
+                DNSRecordDetailView(record: record, appState: appState)
             } else {
                 Text("mainView_noRecordSelected".localized())
                     .foregroundColor(.secondary)

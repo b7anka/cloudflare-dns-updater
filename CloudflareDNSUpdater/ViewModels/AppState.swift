@@ -36,36 +36,4 @@ final class AppState: ObservableObject {
         }
     }
     
-    @MainActor
-    func updateRecord(_ record: DNSRecord) async {
-        isLoading = true
-        defer {
-            isLoading = false
-        }
-        
-        do {
-            try await repository.updateDNSRecord(record)
-            await fetchRecords()
-        } catch {
-            self.error = error
-        }
-    }
-    
-    @MainActor
-    func deleteRecord(_ id: String?) async {
-        isLoading = true
-        error = nil
-        defer {
-            isLoading = false
-        }
-        
-        do {
-            try await repository.deleteDNSRecord(id)
-            selectedRecordId = nil
-            await fetchRecords()
-        } catch {
-            self.error = error
-        }
-    }
-    
 }
