@@ -10,7 +10,8 @@ import Mimus
 @testable import CloudflareDNSUpdater
 
 final class MockURLRequestBuilder: URLRequestBuilder, Mock {
-    var storage = Storage()
+    
+    nonisolated(unsafe) var storage = Storage()
     
     func build(url: URL, headers: [HTTPHeader]?, body: Codable?, method: HTTPMethod) throws -> URLRequest {
         recordCall(

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol BackgroundTaskManager: AnyObject {
     func startBackgroundTask()
     func stopBackgroundTask()

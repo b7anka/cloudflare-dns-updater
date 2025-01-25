@@ -82,3 +82,20 @@ final class DefaultPersistenceManager: ObservableObject, PersistenceManager {
     }
     
 }
+
+#if DEBUG
+extension DefaultPersistenceManager {
+    
+    // only for testing pourposes
+    // swiftlint:disable:next identifier_name
+    var _context: ModelContext? {
+        get {
+            context
+        }
+        set {
+            context = newValue
+        }
+    }
+    
+}
+#endif

@@ -11,16 +11,23 @@ import Mimus
 
 final class MockURLSession: URLSessionProtocol, Mock {
     
-    var storage = Storage()
-    var responseToReturn: Codable?
-    var errorToThrow: Error?
-    private(set) var lastRequest: URLRequest?
+    nonisolated(unsafe) var storage = Storage()
+    nonisolated(unsafe) var responseToReturn: Codable?
+    nonisolated(unsafe) var errorToThrow: Error?
+    nonisolated(unsafe) var stringToReturn: String?
+    private(set) nonisolated(unsafe) var lastRequest: URLRequest?
     
     func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (
         Data,
         URLResponse
     ) {
-        recordCall(withIdentifier: "dataFromUrl", arguments: [url])
+        recordCall(
+            withIdentifier: "dataFromUrl",
+            arguments: [url.absoluteString]
+        )
+        if let stringToReturn {
+            return (stringToReturn.data(using: .utf8)!, URLResponse())
+        }
         if let responseToReturn {
             return try returnResponseData(response: responseToReturn, url: url)
         }
@@ -36,6 +43,9 @@ final class MockURLSession: URLSessionProtocol, Mock {
     ) {
         recordCall(withIdentifier: "dataForRequest", arguments: [request])
         lastRequest = request
+        if let stringToReturn {
+            return (stringToReturn.data(using: .utf8)!, URLResponse())
+        }
         if let responseToReturn, let url = request.url {
             return try returnResponseData(
                 response: responseToReturn,

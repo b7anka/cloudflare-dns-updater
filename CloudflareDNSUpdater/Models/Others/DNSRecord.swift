@@ -44,4 +44,8 @@ struct DNSRecord: Codable, Identifiable, Equatable {
         self.ttl = ttl
     }
     
+    func toString() -> String {
+        return "\(nameOrNoValue) (\(typeOrNoValue)): \(contentOrNoValue)"
+    }
+    
 }

@@ -52,7 +52,6 @@ struct MenuBarView: View {
         .padding()
         .frame(width: 250)
         .onAppear {
-            backgroundTask.modelContext = modelContext
             backgroundTask.startBackgroundTask()
         }
         .onDisappear {

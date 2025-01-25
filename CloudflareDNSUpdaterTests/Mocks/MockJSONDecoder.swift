@@ -11,8 +11,8 @@ import Mimus
 
 final class MockJSONDecoder: JSONDecoderProtocol, Mock {
     
-    var storage = Storage()
-    private(set) var lastData: Data?
+    nonisolated(unsafe) var storage = Storage()
+    private(set) nonisolated(unsafe) var lastData: Data?
     
     func decode<T>(_ type: T.Type, from data: Data) throws -> T where T: Decodable {
         recordCall(withIdentifier: "decode", arguments: [data])

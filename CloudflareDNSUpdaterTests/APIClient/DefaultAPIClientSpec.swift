@@ -12,15 +12,17 @@ import Mimus
 @testable import CloudflareDNSUpdater
 
 // swiftlint:disable function_body_length
-class DefaultAPIClientTests: QuickSpec {
+class DefaultAPIClientSpec: QuickSpec {
     override static func spec() {
         var sut: DefaultAPIClient!
         var mockRequestBuilder: MockURLRequestBuilder!
         var mockSessionFactory: MockURLSessionFactory!
         var mockSession: MockURLSession!
         var mockDecoder: MockJSONDecoder!
+        var mockLogger: MockLogger!
         
         beforeEach {
+            mockLogger = MockLogger()
             mockRequestBuilder = MockURLRequestBuilder()
             mockSessionFactory = MockURLSessionFactory()
             mockSession = mockSessionFactory.makeURLSession() as? MockURLSession
@@ -29,7 +31,8 @@ class DefaultAPIClientTests: QuickSpec {
             sut = DefaultAPIClient(
                 requestBuilder: mockRequestBuilder,
                 sessionFactory: mockSessionFactory,
-                decoder: mockDecoder
+                decoder: mockDecoder,
+                logger: mockLogger
             )
         }
         
@@ -170,6 +173,14 @@ class DefaultAPIClientTests: QuickSpec {
                             done()
                         }
                     }
+                }
+            }
+            
+            context("When deinit called") {
+                it("should log message") {
+                    sut = nil
+                    mockLogger
+                        .verifyCall(withIdentifier: "logMessage", arguments: ["DEFAULT API CLIENT DEINIT CALLED"])
                 }
             }
         }

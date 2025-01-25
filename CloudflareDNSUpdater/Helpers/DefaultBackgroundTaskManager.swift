@@ -6,33 +6,42 @@
 //
 
 import Foundation
-import SwiftData
 
 @MainActor
-final class DefaultBackgroundTaskManager: ObservableObject, @preconcurrency BackgroundTaskManager {
+final class DefaultBackgroundTaskManager: ObservableObject, BackgroundTaskManager {
+    
+    @Published var lastUpdate: Date?
+    @Published var currentIP: String?
+    @Published var isUpdating: Bool = false
+    @Published var lastError: Error?
     private var timer: Timer?
     private let interval: TimeInterval
     private nonisolated let repository: DNSRepositoryProtocol
     private nonisolated let storage: StorageManager
     private nonisolated let ipService: IPAddressService
-    @Published var lastUpdate: Date?
-    @Published var currentIP: String?
-    @Published var isUpdating: Bool = false
-    @Published var lastError: Error?
-    var modelContext: ModelContext?
+    private let persistanceManager: PersistenceManager
+    private let logger: Logger
     
     init(
         interval: TimeInterval = 300, // Default to 5 minutes
         ipAddressService: IPAddressService = DefaultIPAddressService(),
         factory: DNSRepositoryFactory = DefaultDNSRepositoryFactory(),
-        storageFactory: StorageManagerFactory = DefaultStorageManagerFactory()
+        storageFactory: StorageManagerFactory = DefaultStorageManagerFactory(),
+        persistanceManager: PersistenceManager = DefaultPersistenceManager.shared,
+        logger: Logger = DefaultLogger.shared
     ) {
         let storage = storageFactory.makeStorageManager()
+        self.logger = logger
+        self.persistanceManager = persistanceManager
         self.interval = interval
         self.repository = factory.makeDNSRepository()
         self.ipService = ipAddressService
         self.storage = storage
         self.currentIP = storage.string(forKey: .lastknownIpAddress)
+    }
+    
+    deinit {
+        logger.logMessage(message: "DEFAULT BACKGROUND TASK MANAGER DEINIT CALLED")
     }
     
     func startBackgroundTask() {
@@ -80,11 +89,13 @@ final class DefaultBackgroundTaskManager: ObservableObject, @preconcurrency Back
             // Fetch all DNS records
             let records = try await repository.fetchDNSRecords()
             
-            // Get auto-update records from SwiftData
-            let descriptor = FetchDescriptor<AutoUpdateRecord>()
-            let autoUpdateRecords = try modelContext?.fetch(descriptor)
+            let autoUpdateRecords = try persistanceManager.fetch(
+                AutoUpdateRecord.self,
+                predicate: nil,
+                sortBy: nil
+            )
             let autoUpdateIds = Set(
-                (autoUpdateRecords ?? []).map { $0.recordId
+                autoUpdateRecords.map { $0.recordId
                 })
             
             // Filter for A records and check if update needed

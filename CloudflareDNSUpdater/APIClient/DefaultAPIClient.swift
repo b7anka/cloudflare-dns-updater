@@ -12,15 +12,22 @@ final class DefaultAPIClient: APIClientProtocol {
     private let requestBuilder: URLRequestBuilder
     private let session: URLSessionProtocol
     private let decoder: JSONDecoderProtocol
+    private let logger: Logger
     
     init(
         requestBuilder: URLRequestBuilder,
         sessionFactory: URLSessionFactory,
-        decoder: JSONDecoderProtocol
+        decoder: JSONDecoderProtocol,
+        logger: Logger
     ) {
         self.requestBuilder = requestBuilder
         session = sessionFactory.makeURLSession()
         self.decoder = decoder
+        self.logger = logger
+    }
+    
+    deinit {
+        logger.logMessage(message: "DEFAULT API CLIENT DEINIT CALLED")
     }
     
     func request<T: Codable>(_ method: HTTPMethod, url: String, body: Codable?, headers: [HTTPHeader]?) async throws -> T {

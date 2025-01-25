@@ -16,11 +16,18 @@ final class DefaultIPAddressService: IPAddressService {
     ]
     
     private nonisolated let session: URLSessionProtocol
+    private let logger: Logger
     
     init(
-        sessionFactory: URLSessionFactory = DefaultURLSessionFactory()
+        sessionFactory: URLSessionFactory = DefaultURLSessionFactory(),
+        logger: Logger = DefaultLogger.shared
     ) {
         session = sessionFactory.makeURLSession()
+        self.logger = logger
+    }
+    
+    deinit {
+        logger.logMessage(message: "DEFAULT IP ADDRESS SERVICE DEINIT CALLED")
     }
     
     func getCurrentIPAddress() async throws -> String {

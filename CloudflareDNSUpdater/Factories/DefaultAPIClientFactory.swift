@@ -16,7 +16,8 @@ struct DefaultAPIClientFactory: APIClientFactory {
         return DefaultAPIClient(
             requestBuilder: requestBuilder,
             sessionFactory: sessionFactory,
-            decoder: decoder
+            decoder: decoder,
+            logger: DefaultLogger.shared
         )
     }
     
