@@ -13,7 +13,7 @@ extension DispatchQueue: DispatchQueueProtocol {
         asyncAfter(deadline: deadline, execute: work)
     }
 
-    func async(_ work: @escaping @Sendable () -> Void) {
+    func async(_ work: @escaping () -> Void) {
         async(group: .none, execute: work)
     }
 }

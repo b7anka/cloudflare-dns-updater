@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol IPAddressService: AnyObject {
+protocol IPAddressService: Sendable, AnyObject {
     func getCurrentIPAddress() async throws -> String
 }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol URLRequestBuilder: AnyObject {
+protocol URLRequestBuilder: Sendable, AnyObject {
     func build(url: URL, headers: [HTTPHeader]?, body: Codable?, method: HTTPMethod) throws -> URLRequest
 }

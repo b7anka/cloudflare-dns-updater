@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol JSONDecoderProtocol {
+protocol JSONDecoderProtocol: Sendable, AnyObject {
     func decode<T>(
         _ type: T.Type,
         from data: Data

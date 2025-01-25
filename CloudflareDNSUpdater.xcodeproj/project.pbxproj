@@ -39,9 +39,22 @@
 		466078352D3BDEE400BFD7B5 /* CloudflareDNSUpdaterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudflareDNSUpdaterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		46131FFC2D451B3E0047270F /* Exceptions for "CloudflareDNSUpdater" folder in "CloudflareDNSUpdater" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				App/CloudflareDNSUpdaterApp.swift,
+			);
+			target = 466078192D3BDEE400BFD7B5 /* CloudflareDNSUpdater */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4660781C2D3BDEE400BFD7B5 /* CloudflareDNSUpdater */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				46131FFC2D451B3E0047270F /* Exceptions for "CloudflareDNSUpdater" folder in "CloudflareDNSUpdater" target */,
+			);
 			path = CloudflareDNSUpdater;
 			sourceTree = "<group>";
 		};
@@ -456,7 +469,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -488,7 +501,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

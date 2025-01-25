@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UserDefaultsProtocol: AnyObject {
+protocol UserDefaultsProtocol: Sendable, AnyObject {
     func string(forKey defaultName: String) -> String?
     func setValue(
         _ value: Any?,

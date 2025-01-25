@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol URLSessionProtocol: AnyObject {
+protocol URLSessionProtocol: Sendable, AnyObject {
     func data(
         for request: URLRequest,
         delegate: (any URLSessionTaskDelegate)?

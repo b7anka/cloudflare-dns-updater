@@ -11,16 +11,17 @@ final class DefaultDNSRepository: DNSRepositoryProtocol {
     
     private let baseURL = "https://api.cloudflare.com/client/v4"
     private let apiToken: String
-    private let apiClient: APIClientProtocol
+    private nonisolated let apiClient: APIClientProtocol
     private let zoneId: String
-    private var headers: [HTTPHeader]
+    private let headers: [HTTPHeader]
     
     init(factory: APIClientFactory, zoneId: String, apiToken: String) {
+        let bearerTokenHeader: HTTPHeader = .init(key: "Authorization", value: "Bearer \(apiToken)")
+        let applicationJsonHeader: HTTPHeader = .init(key: "Content-Type", value: "application/json")
         self.apiClient = factory.makeAPIClient()
         self.zoneId = zoneId
         self.apiToken = apiToken
-        self.headers = []
-        createHeaders()
+        self.headers = [bearerTokenHeader, applicationJsonHeader]
     }
     
     func fetchDNSRecords() async throws -> [DNSRecord] {
@@ -68,12 +69,6 @@ final class DefaultDNSRepository: DNSRepositoryProtocol {
             body: nil,
             headers: headers
         )
-    }
-    
-    private func createHeaders() {
-        let bearerTokenHeader: HTTPHeader = .init(key: "Authorization", value: "Bearer \(apiToken)")
-        let applicationJsonHeader: HTTPHeader = .init(key: "Content-Type", value: "application/json")
-        headers = [bearerTokenHeader, applicationJsonHeader]
     }
     
 }

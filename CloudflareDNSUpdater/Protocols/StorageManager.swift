@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol StorageManager: AnyObject {
+protocol StorageManager: Sendable, AnyObject {
     
     func string(forKey key: UserDefaultsKey) -> String?
     func bool(forKey key: UserDefaultsKey) -> Bool

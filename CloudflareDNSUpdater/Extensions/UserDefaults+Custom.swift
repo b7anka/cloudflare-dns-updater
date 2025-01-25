@@ -7,4 +7,5 @@
 
 import Foundation
 
+extension UserDefaults: @unchecked @retroactive Sendable {}
 extension UserDefaults: UserDefaultsProtocol {}

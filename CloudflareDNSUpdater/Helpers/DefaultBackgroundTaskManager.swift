@@ -8,12 +8,13 @@
 import Foundation
 import SwiftData
 
-final class DefaultBackgroundTaskManager: ObservableObject, BackgroundTaskManager {
+@MainActor
+final class DefaultBackgroundTaskManager: ObservableObject, @preconcurrency BackgroundTaskManager {
     private var timer: Timer?
     private let interval: TimeInterval
-    private let repository: DNSRepositoryProtocol
-    private let storage: StorageManager
-    private let ipService: IPAddressService
+    private nonisolated let repository: DNSRepositoryProtocol
+    private nonisolated let storage: StorageManager
+    private nonisolated let ipService: IPAddressService
     @Published var lastUpdate: Date?
     @Published var currentIP: String?
     @Published var isUpdating: Bool = false
@@ -43,8 +44,8 @@ final class DefaultBackgroundTaskManager: ObservableObject, BackgroundTaskManage
         // Then set up timer for periodic updates
         timer = Timer
             .scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
-                guard let self = self else { return }
-                Task {
+                guard let self else { return }
+                Task { @MainActor in
                     await self.checkAndUpdateRecords()
                 }
             }
@@ -60,6 +61,9 @@ final class DefaultBackgroundTaskManager: ObservableObject, BackgroundTaskManage
         guard !isUpdating else { return }
         
         isUpdating = true
+        defer {
+            isUpdating = false
+        }
         lastError = nil
         
         do {
@@ -67,6 +71,7 @@ final class DefaultBackgroundTaskManager: ObservableObject, BackgroundTaskManage
             let newIP = try await ipService.getCurrentIPAddress()
             guard newIP != currentIP else {
                 lastUpdate = nil
+                isUpdating = false
                 return
             }
             currentIP = newIP
@@ -107,7 +112,6 @@ final class DefaultBackgroundTaskManager: ObservableObject, BackgroundTaskManage
             lastError = error
         }
         
-        isUpdating = false
     }
 }
 

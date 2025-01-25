@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol APIClientProtocol: AnyObject {
+protocol APIClientProtocol: Sendable, AnyObject {
     func request<T: Codable>(_ method: HTTPMethod, url: String, body: Codable?, headers: [HTTPHeader]?) async throws -> T
 }

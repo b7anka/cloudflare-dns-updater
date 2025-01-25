@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DNSRepositoryProtocol:  AnyObject {
+protocol DNSRepositoryProtocol: Sendable, AnyObject {
     func fetchDNSRecords() async throws -> [DNSRecord]
     func updateDNSRecord(_ record: DNSRecord) async throws
     func createDNSRecord(_ record: DNSRecord) async throws

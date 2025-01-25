@@ -15,7 +15,7 @@ final class DefaultIPAddressService: IPAddressService {
         "https://checkip.amazonaws.com"
     ]
     
-    private let session: URLSessionProtocol
+    private nonisolated let session: URLSessionProtocol
     
     init(
         sessionFactory: URLSessionFactory = DefaultURLSessionFactory()
