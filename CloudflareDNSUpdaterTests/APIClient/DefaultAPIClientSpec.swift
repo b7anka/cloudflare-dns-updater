@@ -39,17 +39,29 @@ class DefaultAPIClientTests: QuickSpec {
             let testResponse = TestResponse(id: 1, name: "Test")
             
             context("when URL is invalid") {
+                
+                beforeEach {
+                    mockSession.errorToThrow = URLError(.badURL)
+                }
+                
                 it("throws badURL error") {
                     waitUntil { done in
                         Task {
-                            await expect {
-                                try await sut.request(
+                            do {
+                                _ = try await sut.request(
                                     .get,
                                     url: "invalid url",
                                     body: nil,
                                     headers: nil
                                 ) as TestResponse
-                            }.to(throwError(URLError(.badURL)))
+                                fail("expected to throw error but didn't")
+                            } catch let error as URLError {
+                                expect(error.code).to(equal(.badURL))
+                            } catch {
+                                fail(
+                                    "expected an error of type URLError but got \(error.localizedDescription)"
+                                )
+                            }
                             done()
                         }
                     }
@@ -57,12 +69,16 @@ class DefaultAPIClientTests: QuickSpec {
             }
             
             context("when request is successful") {
-            
+                
+                beforeEach {
+                    mockSession.responseToReturn = testResponse
+                }
+                
                 it("builds request correctly") {
                     let method: HTTPMethod = .post
                     waitUntil { done in
                         Task {
-                            _ = try? await sut.request(
+                            _ = try await sut.request(
                                 method,
                                 url: testURL,
                                 body: testBody,
@@ -73,11 +89,17 @@ class DefaultAPIClientTests: QuickSpec {
                                 withIdentifier: "build",
                                 arguments: [
                                     testURL,
+                                    testHeaders.compactMap({ $0.key + ":" + $0.value}),
                                     testBody,
-                                    testHeaders,
                                     method.rawValue
                                 ]
                             )
+                            mockSessionFactory
+                                .verifyCall(
+                                    withIdentifier: "makeUrlSession",
+                                    arguments: .none,
+                                    mode: .atLeast(1)
+                                )
                             done()
                         }
                     }
@@ -93,6 +115,18 @@ class DefaultAPIClientTests: QuickSpec {
                                 headers: nil
                             )
                             
+                            mockDecoder
+                                .verifyCall(
+                                    withIdentifier: "decode",
+                                    arguments: [
+                                        mockDecoder.lastData
+                                    ]
+                                )
+                            mockSession
+                                .verifyCall(
+                                    withIdentifier: "dataForRequest",
+                                    arguments: [mockSession.lastRequest]
+                                )
                             expect(result).to(equal(testResponse))
                             done()
                         }
@@ -146,70 +180,4 @@ class DefaultAPIClientTests: QuickSpec {
 struct TestResponse: Codable, Equatable {
     let id: Int
     let name: String
-}
-
-final class MockURLRequestBuilder: URLRequestBuilder, Mock {
-    var storage = Storage()
-    
-    func build(url: URL, headers: [HTTPHeader]?, body: Codable?, method: HTTPMethod) throws -> URLRequest {
-        recordCall(
-            withIdentifier: "build",
-            arguments: [url, headers, body, method.rawValue]
-        )
-        
-        var request: URLRequest = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        if let headers {
-            for header in headers {
-                request.addValue(header.value, forHTTPHeaderField: header.key)
-            }
-        }
-        if let body {
-            let data = try JSONEncoder().encode(body)
-            request.httpBody = data
-        }
-        return request
-    }
-}
-
-final class MockURLSessionFactory: URLSessionFactory, Mock {
-    var storage = Storage()
-    
-    func makeURLSession() -> URLSessionProtocol {
-        recordCall(withIdentifier: "makeUrlSession")
-        return MockURLSession()
-    }
-}
-
-final class MockURLSession: URLSessionProtocol, Mock {
-    
-    var storage = Storage()
-    
-    func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (
-        Data,
-        URLResponse
-    ) {
-        recordCall(withIdentifier: "dataFromUrl", arguments: [url])
-        return (Data(), URLResponse())
-    }
-    
-    func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)?) async throws -> (
-        Data,
-        URLResponse
-    ) {
-        recordCall(withIdentifier: "dataForRequest", arguments: [request])
-        return (Data(), URLResponse())
-    }
-    
-}
-
-final class MockJSONDecoder: JSONDecoderProtocol, Mock {
-    
-    var storage = Storage()
-    
-    func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {
-        recordCall(withIdentifier: "decode", arguments: [type, data])
-        return try decode(type.self, from: data)
-    }
-    
 }
