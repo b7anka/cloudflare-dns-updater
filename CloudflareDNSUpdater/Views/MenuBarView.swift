@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var windoManager: WindowManager
+    @EnvironmentObject var appDelegate: AppDelegate
     @Environment(\.modelContext) private var modelContext
     @StateObject private var backgroundTask = DefaultBackgroundTaskManager()
     
@@ -34,13 +34,6 @@ struct MenuBarView: View {
             
             Divider()
             
-            Button("Update DNS Records") {
-                Task {
-                    await appState.fetchRecords()
-                }
-            }
-            .disabled(backgroundTask.isUpdating)
-            
             if backgroundTask.isUpdating {
                 ProgressView()
                     .scaleEffect(0.8)
@@ -49,7 +42,7 @@ struct MenuBarView: View {
             Divider()
             
             Button("Open Main Window") {
-                windoManager.showMainWindow()
+                appDelegate.showMainWindow()
             }
             
             Button("Quit") {

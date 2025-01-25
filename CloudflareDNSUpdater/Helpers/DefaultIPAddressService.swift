@@ -25,8 +25,8 @@ final class DefaultIPAddressService: IPAddressService {
     
     func getCurrentIPAddress() async throws -> String {
         for provider in ipProviders {
-            if let ip = try? await fetchIP(from: provider) {
-                return ip
+            if let ipAddress = try? await fetchIP(from: provider) {
+                return ipAddress
             }
         }
         throw IPError.networkError
@@ -39,11 +39,11 @@ final class DefaultIPAddressService: IPAddressService {
         
         let (data, _) = try await session.data(from: url, delegate: nil)
         
-        guard let ip = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines),
-              !ip.isEmpty else {
+        guard let ipAddress = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !ipAddress.isEmpty else {
             throw IPError.invalidResponse
         }
         
-        return ip
+        return ipAddress
     }
 }

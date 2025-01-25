@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable type_name
 enum OS {
     
     case macOS

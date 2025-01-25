@@ -8,5 +8,5 @@
 import Foundation
 
 protocol JSONEncoderProtocol: Sendable, AnyObject {
-    func encode<T>(_ value: T) throws -> Data where T : Encodable
+    func encode<T>(_ value: T) throws -> Data where T: Encodable
 }

@@ -9,11 +9,14 @@ import Foundation
 
 extension DispatchQueue: DispatchQueueProtocol {
     
-    func asyncAfter(deadline: DispatchTime, _ work: @escaping () -> Void) {
+    func asyncAfter(
+        deadline: DispatchTime,
+        _ work: @Sendable @escaping () -> Void
+    ) {
         asyncAfter(deadline: deadline, execute: work)
     }
 
-    func async(_ work: @escaping () -> Void) {
+    func async(_ work: @Sendable @escaping () -> Void) {
         async(group: .none, execute: work)
     }
 }

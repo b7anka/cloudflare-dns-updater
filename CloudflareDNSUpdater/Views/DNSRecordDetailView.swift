@@ -53,13 +53,12 @@ struct DNSRecordDetailView: View {
                     isOn: $editedProxied
                 )
                 
-                
                 if record.type == RecordType.a.rawValue {
                     Toggle(
                         "recordDetailsView_autoUpdate".localized(),
                         isOn: $autoUpdate
                     )
-                        .onChange(of: autoUpdate) { oldValue, newValue in
+                        .onChange(of: autoUpdate) { _, newValue in
                             if newValue {
                                 // Add to auto-update list
                                 guard let id = record.id else { return }
@@ -79,7 +78,6 @@ struct DNSRecordDetailView: View {
                             try? modelContext.save()
                         }
                 }
-                
                 
             }
             
@@ -129,7 +127,7 @@ struct DNSRecordDetailView: View {
         .onAppear {
             updateFields()
         }
-        .onChange(of: record) { oldValue, newValue in
+        .onChange(of: record) { _, _ in
             updateFields()
         }
     }

@@ -114,4 +114,3 @@ final class DefaultBackgroundTaskManager: ObservableObject, @preconcurrency Back
         
     }
 }
-

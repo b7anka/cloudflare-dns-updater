@@ -11,7 +11,6 @@ import SwiftData
 @main
 struct CloudflareDNSUpdaterApp: App {
     @StateObject private var appState = AppState()
-    @StateObject private var windowManager = WindowManager.shared
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let container: ModelContainer
     
@@ -38,29 +37,21 @@ struct CloudflareDNSUpdaterApp: App {
             }
         }
     
-    
     var body: some Scene {
         WindowGroup {
             MainView()
-                .background(WindowAccessor(
-                    mainQueue: DispatchQueue.main,
-                    windowManager: windowManager
-                ))
                 .environmentObject(appState)
                 .frame(
                     minWidth: 800,
                     minHeight: 500
                 )
-                .onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
-                    windowManager.hideMainWindow()
-                }
         }
         .modelContainer(container)
         // Menu bar extra
         MenuBarExtra("Cloudflare DNS", systemImage: "network") {
             MenuBarView()
                 .environmentObject(appState)
-                .environmentObject(windowManager)
+                .environmentObject(appDelegate)
         }
         .menuBarExtraStyle(.menu)
     }
