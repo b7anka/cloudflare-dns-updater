@@ -16,7 +16,8 @@ struct DefaultDNSRepositoryFactory: DNSRepositoryFactory {
         return DefaultDNSRepository(
             factory: clientFactory,
             zoneId: storageManager.string(forKey: .cloudflareZoneId) ?? "",
-            apiToken: storageManager.string(forKey: .cloudflareApiToken) ?? ""
+            apiToken: storageManager.string(forKey: .cloudflareApiToken) ?? "",
+            logger: DefaultLogger.shared
         )
     }
     

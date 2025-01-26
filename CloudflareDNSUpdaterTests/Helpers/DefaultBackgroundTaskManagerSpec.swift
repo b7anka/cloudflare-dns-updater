@@ -88,15 +88,17 @@ final class DefaultBackgroundTaskManagerSpec: QuickSpec {
                     sut.startBackgroundTask()
                     
                     expect(sut.isUpdating).toEventually(beTrue())
+                    expect(sut.lastUpdate).toEventually(beNil())
+                    expect(sut.isUpdating).toEventually(beFalse())
                     
                     mockDNSRepository.verifyCall(
                         withIdentifier: "updateDNSRecord",
                         mode: .never
                     )
-                    mockIPService.verifyCall(withIdentifier: "getCurrentIPAddress")
-                    
-                    expect(sut.lastUpdate).toEventually(beNil())
-                    expect(sut.isUpdating).toEventually(beFalse())
+                    mockIPService
+                        .verifyCall(
+                            withIdentifier: "getCurrentIPAddress"
+                        )
                 }
             }
             

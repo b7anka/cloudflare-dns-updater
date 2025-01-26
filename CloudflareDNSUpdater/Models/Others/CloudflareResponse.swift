@@ -33,4 +33,10 @@ struct CloudflareResponse<T: Codable>: Codable {
             )
     }
     
+    init(success: Bool = false, errors: [CloudflareError] = [], result: T?) {
+        self.success = success
+        self.errors = errors
+        self.result = result
+    }
+    
 }

@@ -31,9 +31,9 @@ struct DNSRecord: Codable, Identifiable, Equatable {
     init(
         id: String?,
         name: String?,
-        type: String?,
+        type: String? = nil,
         content: String?,
-        proxied: Bool,
+        proxied: Bool = false,
         ttl: Int? = nil
     ) {
         self.id = id
