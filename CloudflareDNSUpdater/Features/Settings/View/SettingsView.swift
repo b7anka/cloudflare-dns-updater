@@ -10,42 +10,64 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.dismiss) private var dismiss
-    @AppStorage("cloudflareApiToken") private var apiToken = ""
-    @AppStorage("cloudflareZoneId") private var zoneId = ""
-    @AppStorage("launchAtLogin") private var launchAtLogin = false
+    @StateObject private var viewModel: SettingsViewViewModel
+    
+    init(
+        viewModelFactory: SettingsViewViewModelFactory = DefaultSettingsViewViewModelFactory()
+    ) {
+        _viewModel = StateObject(wrappedValue: viewModelFactory.makeViewModel())
+    }
     
     var body: some View {
-        Form {
-            Section(
-                header: Text("settingsView_cloudflareSettings".localized())
-            ) {
-                SecureField(
-                    "settingsView_apiToken".localized(),
-                    text: $apiToken
-                )
-                TextField("settingsView_zoneId".localized(), text: $zoneId)
-            }
-            
-            Section(
-                header: Text("settingsView_applicationSettings".localized())
-            ) {
-                Toggle(
-                    "settingsView_launchAtLogin".localized(),
-                    isOn: $launchAtLogin
-                )
-            }
-        
+        VStack(spacing: .zero) {
+            toolbar
+            form
         }
-        .padding()
-        .frame(width: 400, height: 300)
-        .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-                Button("general_closeButton".localized()) {
-                    dismiss()
-                }
-            }
+        .frame(width: 400)
+    }
+    
+    // MARK: - TOOLBAR
+    @ViewBuilder private var toolbar: some View {
+        TopToolBarView(buttons: [
+            .close({ dismiss() })
+        ], toolbarPadding: 10,
+                       backgreoundColor: nil)
+    }
+    
+    // MARK: - CLOUDFLARE SETTINGS SECTION
+    @ViewBuilder private var cloudflareSettings: some View {
+        Section(
+            header: Text("settingsView_cloudflareSettings".localized())
+        ) {
+            SecureField(
+                "settingsView_apiToken".localized(),
+                text: $viewModel.apiToken
+            )
+            TextField("settingsView_zoneId".localized(), text: $viewModel.zoneId)
         }
     }
+    
+    // MARK: - APPLICATION SETTINGS SECTION
+    @ViewBuilder private var applicationSettings: some View {
+        Section(
+            header: Text("settingsView_applicationSettings".localized())
+        ) {
+            Toggle(
+                "settingsView_launchAtLogin".localized(),
+                isOn: $viewModel.launchAtLogin
+            )
+        }
+    }
+    
+    // MARK: - FORM
+    @ViewBuilder private var form: some View {
+        Form {
+            cloudflareSettings
+            applicationSettings
+        }
+        .padding()
+    }
+    
 }
 
 #if DEBUG
