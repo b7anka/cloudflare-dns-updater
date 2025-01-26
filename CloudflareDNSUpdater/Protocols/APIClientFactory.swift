@@ -8,5 +8,5 @@
 import Foundation
 
 protocol APIClientFactory {
-    func makeAPIClient() -> APIClientProtocol
+    func makeAPIClient() -> APIClient
 }

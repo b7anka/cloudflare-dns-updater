@@ -8,5 +8,6 @@
 import Foundation
 
 protocol Logger: Sendable, AnyObject {
-    func logMessage(message: String)
+    @discardableResult
+    func logMessage(message: String) -> Bool
 }

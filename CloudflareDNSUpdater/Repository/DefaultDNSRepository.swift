@@ -11,7 +11,7 @@ final class DefaultDNSRepository: DNSRepositoryProtocol {
     
     private let baseURL = "https://api.cloudflare.com/client/v4"
     private let apiToken: String
-    private nonisolated let apiClient: APIClientProtocol
+    private nonisolated let apiClient: APIClient
     private let zoneId: String
     private let headers: [HTTPHeader]
     

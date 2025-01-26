@@ -9,7 +9,7 @@ import Foundation
 
 struct DefaultAPIClientFactory: APIClientFactory {
     
-    func makeAPIClient() -> APIClientProtocol {
+    func makeAPIClient() -> APIClient {
         let requestBuilder: URLRequestBuilder = DefaultURLRequestBuilder()
         let sessionFactory: URLSessionFactory = DefaultURLSessionFactory()
         let decoder: JSONDecoderProtocol = JSONDecoder()

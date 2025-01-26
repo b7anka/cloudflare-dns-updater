@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DefaultAPIClient: APIClientProtocol {
+final class DefaultAPIClient: APIClient {
     
     private let requestBuilder: URLRequestBuilder
     private let session: URLSessionProtocol

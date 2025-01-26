@@ -13,8 +13,9 @@ final class MockLogger: Logger, Mock {
     
     nonisolated(unsafe) var storage = Storage()
     
-    func logMessage(message: String) {
+    func logMessage(message: String) -> Bool {
         recordCall(withIdentifier: "logMessage", arguments: [message])
+        return true
     }
     
 }
