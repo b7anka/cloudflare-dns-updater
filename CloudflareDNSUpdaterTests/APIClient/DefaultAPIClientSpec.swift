@@ -11,7 +11,6 @@ import Nimble
 import Mimus
 @testable import CloudflareDNSUpdater
 
-// swiftlint:disable function_body_length
 class DefaultAPIClientSpec: QuickSpec {
     override static func spec() {
         var sut: DefaultAPIClient!

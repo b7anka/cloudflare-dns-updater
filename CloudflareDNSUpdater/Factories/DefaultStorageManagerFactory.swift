@@ -14,7 +14,8 @@ struct DefaultStorageManagerFactory: StorageManagerFactory {
         let queue: DispatchQueueProtocol = DispatchQueue(label: "pt.tiagomoreira.dnsupdater.storage")
         return DefaultStorageManager(
             userDefaultsFactory: userDefaultsFactory,
-            queue: queue
+            queue: queue,
+            logger: DefaultLogger.shared
         )
     }
     

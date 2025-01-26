@@ -11,13 +11,20 @@ final class DefaultStorageManager: StorageManager {
     
     private let defaults: UserDefaultsProtocol
     private let queue: DispatchQueueProtocol
+    private let logger: Logger
     
     init(
         userDefaultsFactory: UserDefaultsFactory,
-        queue: DispatchQueueProtocol
+        queue: DispatchQueueProtocol,
+        logger: Logger
     ) {
         self.defaults = userDefaultsFactory.makeUserDefaults()
         self.queue = queue
+        self.logger = logger
+    }
+    
+    deinit {
+        logger.logMessage(message: "DEFAULT STORAGE MANAGER DEINIT CALLED")
     }
     
     func string(forKey key: UserDefaultsKey) -> String? {

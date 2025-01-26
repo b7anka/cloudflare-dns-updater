@@ -40,7 +40,6 @@ final class SettingsViewViewModel: ObservableObject {
         self.storageManager = storageManager
     }
     
-    
     private func saveSettings() {
         storageManager.set(apiToken, forKey: .cloudflareApiToken)
         storageManager.set(zoneId, forKey: .cloudflareZoneId)

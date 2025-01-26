@@ -14,7 +14,6 @@ import Nimble
 import Mimus
 @testable import CloudflareDNSUpdater
 
-// swiftlint:disable function_body_length
 final class DefaultPersistenceManagerSpec: QuickSpec {
     override static func spec() {
         var sut: DefaultPersistenceManager!
@@ -213,7 +212,7 @@ final class DefaultPersistenceManagerSpec: QuickSpec {
                 
                 it("should throw contextNotFound error when context is nil on update") {
                     sut._context = nil
-                    let record = AutoUpdateRecord(
+                    _ = AutoUpdateRecord(
                         recordId: "test",
                         recordName: "test.com"
                     )
@@ -235,7 +234,7 @@ final class DefaultPersistenceManagerSpec: QuickSpec {
                 
                 it("should throw contextNotFound error when context is nil on fetch") {
                     sut._context = nil
-                    let record = AutoUpdateRecord(
+                    _ = AutoUpdateRecord(
                         recordId: "test",
                         recordName: "test.com"
                     )
@@ -246,7 +245,7 @@ final class DefaultPersistenceManagerSpec: QuickSpec {
                 
                 it("should throw contextNotFound error when context is nil on delete all") {
                     sut._context = nil
-                    let record = AutoUpdateRecord(
+                    _ = AutoUpdateRecord(
                         recordId: "test",
                         recordName: "test.com"
                     )

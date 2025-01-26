@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import Mimus
 @testable import CloudflareDNSUpdater
-// swiftlint:disable function_body_length
+
 final class DefaultIPAddressServiceSpec: QuickSpec {
     override static func spec() {
         var sut: DefaultIPAddressService!
