@@ -9,6 +9,7 @@
 general_closeButton = "Close";
 general_cancelButton = "Cancel";
 general_deleteButton = "Delete";
+general_quit = "Quit";
 
 mainView_title = "DNS Records";
 mainView_noRecordSelected = "Select a DNS record";
@@ -31,3 +32,9 @@ recordDetailsView_deleteRecord = "Delete Record";
 
 alertView_deleteRecordTitle = "Delete DNS Record";
 alertView_youSureDeleteRecord = "Are you sure you want to delete this DNS record? This action cannot be undone.";
+
+menuBarView_currentIP = "Current IP:";
+menuBarView_checking = "Checking...";
+menuBarView_lastUpdate = "Last Update:";
+menuBarView_ipNotChanged = "IP hasn't changed yet";
+menuBarView_openMainWindow = "Open Main Window";

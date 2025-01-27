@@ -15,14 +15,18 @@ struct MenuBarView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Current IP: \(backgroundTask.currentIP ?? "Checking...")")
+            Text(
+                "\("menuBarView_currentIP".localized()) \(backgroundTask.currentIP ?? "menuBarView_checking".localized())"
+            )
                 .font(.system(.body, design: .monospaced))
             
             if let lastUpdate = backgroundTask.lastUpdate {
-                Text("Last Update: \(lastUpdate, style: .time)")
+                Text("\("menuBarView_lastUpdate".localized()) \(lastUpdate, style: .time)")
                     .font(.caption)
             } else {
-                Text("Last Update: IP hasn't changed yet")
+                Text(
+                    "\("menuBarView_lastUpdate".localized()) \("menuBarView_ipNotChanged".localized())"
+                )
                     .font(.caption)
             }
             
@@ -41,11 +45,11 @@ struct MenuBarView: View {
             
             Divider()
             
-            Button("Open Main Window") {
+            Button("menuBarView_openMainWindow".localized()) {
                 appDelegate.showMainWindow()
             }
             
-            Button("Quit") {
+            Button("general_quit".localized()) {
                 NSApp.terminate(nil)
             }
         }

@@ -9,6 +9,8 @@
 general_closeButton = "Fechar";
 general_cancelButton = "Cancelar";
 general_deleteButton = "Eliminar";
+general_quit = "Sair";
+
 mainView_title = "Registos DNS";
 mainView_noRecordSelected = "Selecione um registo DNS";
 settingsView_cloudflareSettings = "Definições do Cloudflare";
@@ -27,3 +29,9 @@ recordDetailsView_updateRecord = "Atualizar Registo";
 recordDetailsView_deleteRecord = "Eliminar Registo";
 alertView_deleteRecordTitle = "Eliminar Registo DNS";
 alertView_youSureDeleteRecord = "Tem a certeza que pretende eliminar este registo DNS? Esta ação não pode ser desfeita.";
+
+menuBarView_currentIP = "IP atual:";
+menuBarView_checking = "Verificando...";
+menuBarView_lastUpdate = "Última atualização:";
+menuBarView_ipNotChanged = "O IP ainda não mudou";
+menuBarView_openMainWindow = "Abrir janela principal";
