@@ -10,6 +10,6 @@ import Foundation
 @MainActor
 protocol DNSRecordDetailViewViewModelFactory {
     
-    func makeViewModel(for record: DNSRecord, with appState: AppState) -> DNSRecordDetailViewModel
+    func makeViewModel(for record: DNSRecord, with appState: MainViewViewModel) -> DNSRecordDetailViewModel
     
 }

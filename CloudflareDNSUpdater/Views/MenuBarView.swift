@@ -15,43 +15,14 @@ struct MenuBarView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(
-                "\("menuBarView_currentIP".localized()) \(backgroundTask.currentIP ?? "menuBarView_checking".localized())"
-            )
-                .font(.system(.body, design: .monospaced))
-            
-            if let lastUpdate = backgroundTask.lastUpdate {
-                Text("\("menuBarView_lastUpdate".localized()) \(lastUpdate, style: .time)")
-                    .font(.caption)
-            } else {
-                Text(
-                    "\("menuBarView_lastUpdate".localized()) \("menuBarView_ipNotChanged".localized())"
-                )
-                    .font(.caption)
-            }
-            
-            if let error = backgroundTask.lastError {
-                Text(error.localizedDescription)
-                    .font(.caption)
-                    .foregroundColor(.red)
-            }
-            
+            currentIPAddressView
+            lastUpdateStatusView
+            errorView
             Divider()
-            
-            if backgroundTask.isUpdating {
-                ProgressView()
-                    .scaleEffect(0.8)
-            }
-            
+            loadingView
             Divider()
-            
-            Button("menuBarView_openMainWindow".localized()) {
-                appStatusManager.showApp()
-            }
-            
-            Button("general_quit".localized()) {
-                NSApp.terminate(nil)
-            }
+            openMainWindowButton
+            quitButton
         }
         .padding()
         .frame(width: 250)
@@ -60,6 +31,58 @@ struct MenuBarView: View {
         }
         .onDisappear {
             backgroundTask.stopBackgroundTask()
+        }
+    }
+    
+    // MARK: - CURRENT IP ADDRESS VIEW
+    @ViewBuilder private var currentIPAddressView: some View {
+        Text(
+            "\("menuBarView_currentIP".localized()) \(backgroundTask.currentIP ?? "menuBarView_checking".localized())"
+        )
+            .font(.system(.body, design: .monospaced))
+    }
+    
+    // MARK: - LAST UPDATE STATUS VIEW
+    @ViewBuilder private var lastUpdateStatusView: some View {
+        if let lastUpdate = backgroundTask.lastUpdate {
+            Text("\("menuBarView_lastUpdate".localized()) \(lastUpdate, style: .time)")
+                .font(.caption)
+        } else {
+            Text(
+                "\("menuBarView_lastUpdate".localized()) \("menuBarView_ipNotChanged".localized())"
+            )
+                .font(.caption)
+        }
+    }
+    
+    // MARK: - ERROR VIEW
+    @ViewBuilder private var errorView: some View {
+        if let error = backgroundTask.lastError {
+            Text(error.localizedDescription)
+                .font(.caption)
+                .foregroundColor(.red)
+        }
+    }
+    
+    // MARK: - LOADING VIEW
+    @ViewBuilder private var loadingView: some View {
+        if backgroundTask.isUpdating {
+            ProgressView()
+                .scaleEffect(0.8)
+        }
+    }
+    
+    // MARK: - OPEN MAIN WINDOW BUTTON
+    @ViewBuilder private var openMainWindowButton: some View {
+        Button("menuBarView_openMainWindow".localized()) {
+            appStatusManager.showApp()
+        }
+    }
+    
+    // MARK: - QUIT BUTTON
+    @ViewBuilder private var quitButton: some View {
+        Button("general_quit".localized()) {
+            NSApp.terminate(nil)
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 // swiftlint:disable type_name
 struct DefaultDNSRecordDetailViewViewModelFactory: DNSRecordDetailViewViewModelFactory {
     
-    func makeViewModel(for record: DNSRecord, with appState: AppState) -> DNSRecordDetailViewModel {
+    func makeViewModel(for record: DNSRecord, with appState: MainViewViewModel) -> DNSRecordDetailViewModel {
         let viewModel = DNSRecordDetailViewModel(
             record: record,
             persistenceManager: DefaultPersistenceManager.shared,

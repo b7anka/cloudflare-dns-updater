@@ -26,7 +26,7 @@ final class DNSRecordDetailViewModel: ObservableObject {
     private let record: DNSRecord
     private let persistenceManager: PersistenceManager
     private let repository: DNSRepositoryProtocol
-    private let appState: AppState
+    private let appState: MainViewViewModel
     private var autoUpdateRecords: [AutoUpdateRecord]
     private let logger: Logger
     
@@ -42,7 +42,7 @@ final class DNSRecordDetailViewModel: ObservableObject {
         record: DNSRecord,
         persistenceManager: PersistenceManager,
         repositoryFactory: DNSRepositoryFactory,
-        appState: AppState,
+        appState: MainViewViewModel,
         logger: Logger
     ) {
         self.persistenceManager = persistenceManager

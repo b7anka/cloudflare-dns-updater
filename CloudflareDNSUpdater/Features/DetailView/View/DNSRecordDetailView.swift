@@ -16,7 +16,7 @@ struct DNSRecordDetailView: View {
     init(
         record: DNSRecord,
         viewModelFactory: DNSRecordDetailViewViewModelFactory = DefaultDNSRecordDetailViewViewModelFactory(),
-        appState: AppState
+        appState: MainViewViewModel
     ) {
         _viewModel = ObservedObject(
             wrappedValue: viewModelFactory
@@ -137,7 +137,7 @@ struct DNSRecordDetailView: View {
     DNSRecordDetailView(
         record: record,
         viewModelFactory: DefaultDNSRecordDetailViewViewModelFactory(),
-        appState: AppState()
+        appState: MainViewViewModel()
     )
 }
 #endif

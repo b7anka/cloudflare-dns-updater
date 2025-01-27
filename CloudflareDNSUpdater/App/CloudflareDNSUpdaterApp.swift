@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct CloudflareDNSUpdaterApp: App {
-    @StateObject private var appState = AppState()
+    
     @StateObject private var persistenceManager: DefaultPersistenceManager = .shared
     @StateObject private var appStatusManager: DefaultAppStatusManager = .shared
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -18,7 +18,6 @@ struct CloudflareDNSUpdaterApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(appState)
                 .environmentObject(persistenceManager)
                 .frame(
                     minWidth: 800,
@@ -28,7 +27,6 @@ struct CloudflareDNSUpdaterApp: App {
         // Menu bar extra
         MenuBarExtra("Cloudflare DNS", systemImage: "network") {
             MenuBarView()
-                .environmentObject(appState)
                 .environmentObject(appStatusManager)
         }
         .menuBarExtraStyle(.menu)
