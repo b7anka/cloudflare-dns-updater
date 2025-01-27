@@ -19,7 +19,12 @@ final class SettingsViewViewModel: ObservableObject {
             saveSettings()
         }
     }
-    @Published var launchAtLogin: Bool {
+    @Published var startMinimized: Bool {
+        didSet {
+            saveSettings()
+        }
+    }
+    @Published var quitWhenClosed: Bool {
         didSet {
             saveSettings()
         }
@@ -35,7 +40,8 @@ final class SettingsViewViewModel: ObservableObject {
         let storageManager: StorageManager = storageManagerFactory.makeStorageManager()
         self.apiToken = storageManager.string(forKey: .cloudflareApiToken) ?? ""
         self.zoneId = storageManager.string(forKey: .cloudflareZoneId) ?? ""
-        self.launchAtLogin = storageManager.bool(forKey: .launchAtLogin)
+        self.startMinimized = storageManager.bool(forKey: .launchMinimized)
+        self.quitWhenClosed = storageManager.bool(forKey: .quitWhenClosed)
         self.logger = logger
         self.storageManager = storageManager
     }
@@ -43,7 +49,8 @@ final class SettingsViewViewModel: ObservableObject {
     private func saveSettings() {
         storageManager.set(apiToken, forKey: .cloudflareApiToken)
         storageManager.set(zoneId, forKey: .cloudflareZoneId)
-        storageManager.set(launchAtLogin, forKey: .launchAtLogin)
+        storageManager.set(startMinimized, forKey: .launchMinimized)
+        storageManager.set(quitWhenClosed, forKey: .quitWhenClosed)
     }
     
 }

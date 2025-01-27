@@ -18,7 +18,8 @@ settingsView_cloudflareSettings = "Cloudflare Settings";
 settingsView_apiToken = "API Token";
 settingsView_zoneId = "Zone ID";
 settingsView_applicationSettings = "Application Settings";
-settingsView_launchAtLogin = "Launch at Login";
+settingsView_launchMinimized = "Start minimized";
+settingsView_quitWhenClosed = "Quit when closed";
 
 recordDetailsView_recordDetails = "Record Details";
 recordDetailsView_name = "Name";

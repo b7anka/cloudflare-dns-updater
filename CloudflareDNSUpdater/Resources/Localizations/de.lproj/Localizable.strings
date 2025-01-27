@@ -13,11 +13,14 @@ general_quit = "Beenden";
 
 mainView_title = "DNS-Einträge";
 mainView_noRecordSelected = "DNS-Eintrag auswählen";
+
 settingsView_cloudflareSettings = "Cloudflare-Einstellungen";
 settingsView_apiToken = "API-Token";
 settingsView_zoneId = "Zonen-ID";
 settingsView_applicationSettings = "Anwendungseinstellungen";
-settingsView_launchAtLogin = "Beim Anmelden starten";
+settingsView_launchMinimized = "Minimiert starten";
+settingsView_quitWhenClosed = "Beim Schließen beenden";
+
 recordDetailsView_recordDetails = "Eintragsdetails";
 recordDetailsView_name = "Name";
 recordDetailsView_type = "Typ";
@@ -27,6 +30,7 @@ recordDetailsView_proxied = "Über Proxy";
 recordDetailsView_autoUpdate = "IP-Adresse automatisch aktualisieren";
 recordDetailsView_updateRecord = "Eintrag aktualisieren";
 recordDetailsView_deleteRecord = "Eintrag löschen";
+
 alertView_deleteRecordTitle = "DNS-Eintrag löschen";
 alertView_youSureDeleteRecord = "Sind Sie sicher, dass Sie diesen DNS-Eintrag löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
 

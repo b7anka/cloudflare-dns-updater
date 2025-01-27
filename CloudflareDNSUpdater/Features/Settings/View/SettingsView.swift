@@ -53,8 +53,12 @@ struct SettingsView: View {
             header: Text("settingsView_applicationSettings".localized())
         ) {
             Toggle(
-                "settingsView_launchAtLogin".localized(),
-                isOn: $viewModel.launchAtLogin
+                "settingsView_launchMinimized".localized(),
+                isOn: $viewModel.startMinimized
+            )
+            Toggle(
+                "settingsView_quitWhenClosed".localized(),
+                isOn: $viewModel.quitWhenClosed
             )
         }
     }

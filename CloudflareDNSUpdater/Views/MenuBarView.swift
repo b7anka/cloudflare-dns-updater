@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MenuBarView: View {
-    @EnvironmentObject var appState: AppState
-    @EnvironmentObject var appDelegate: AppDelegate
+    
+    @EnvironmentObject var appStatusManager: DefaultAppStatusManager
     @Environment(\.modelContext) private var modelContext
     @StateObject private var backgroundTask = DefaultBackgroundTaskManager()
     
@@ -46,7 +46,7 @@ struct MenuBarView: View {
             Divider()
             
             Button("menuBarView_openMainWindow".localized()) {
-                appDelegate.showMainWindow()
+                appStatusManager.showApp()
             }
             
             Button("general_quit".localized()) {

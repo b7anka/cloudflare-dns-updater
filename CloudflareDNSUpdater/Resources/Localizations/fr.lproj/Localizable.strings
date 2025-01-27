@@ -13,11 +13,14 @@ general_quit = "Quitter";
 
 mainView_title = "Enregistrements DNS";
 mainView_noRecordSelected = "Sélectionner un enregistrement DNS";
+
 settingsView_cloudflareSettings = "Paramètres Cloudflare";
 settingsView_apiToken = "Jeton API";
 settingsView_zoneId = "ID de Zone";
 settingsView_applicationSettings = "Paramètres de l'Application";
-settingsView_launchAtLogin = "Lancer au Démarrage";
+settingsView_launchMinimized = "Démarrer minimisé";
+settingsView_quitWhenClosed = "Quitter à la fermeture";
+
 recordDetailsView_recordDetails = "Détails de l'Enregistrement";
 recordDetailsView_name = "Nom";
 recordDetailsView_type = "Type";
@@ -27,6 +30,7 @@ recordDetailsView_proxied = "Proxifié";
 recordDetailsView_autoUpdate = "Mise à jour automatique de l'adresse IP";
 recordDetailsView_updateRecord = "Mettre à jour l'Enregistrement";
 recordDetailsView_deleteRecord = "Supprimer l'Enregistrement";
+
 alertView_deleteRecordTitle = "Supprimer l'Enregistrement DNS";
 alertView_youSureDeleteRecord = "Êtes-vous sûr de vouloir supprimer cet enregistrement DNS ? Cette action ne peut pas être annulée.";
 

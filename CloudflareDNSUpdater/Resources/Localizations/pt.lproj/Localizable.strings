@@ -13,11 +13,14 @@ general_quit = "Sair";
 
 mainView_title = "Registos DNS";
 mainView_noRecordSelected = "Selecione um registo DNS";
+
 settingsView_cloudflareSettings = "Definições do Cloudflare";
 settingsView_apiToken = "Token API";
 settingsView_zoneId = "ID da Zona";
 settingsView_applicationSettings = "Definições da Aplicação";
-settingsView_launchAtLogin = "Iniciar no Arranque";
+settingsView_launchMinimized = "Iniciar minimizado";
+settingsView_quitWhenClosed = "Terminar ao fechar";
+
 recordDetailsView_recordDetails = "Detalhes do Registo";
 recordDetailsView_name = "Nome";
 recordDetailsView_type = "Tipo";
@@ -27,6 +30,7 @@ recordDetailsView_proxied = "Com Proxy";
 recordDetailsView_autoUpdate = "Atualização Automática do IP";
 recordDetailsView_updateRecord = "Atualizar Registo";
 recordDetailsView_deleteRecord = "Eliminar Registo";
+
 alertView_deleteRecordTitle = "Eliminar Registo DNS";
 alertView_youSureDeleteRecord = "Tem a certeza que pretende eliminar este registo DNS? Esta ação não pode ser desfeita.";
 

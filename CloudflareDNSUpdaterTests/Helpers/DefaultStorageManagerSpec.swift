@@ -76,19 +76,19 @@ final class DefaultStorageManagerSpec: QuickSpec {
                 }
                 
                 it("returns the boolean value") {
-                    let result = sut.bool(forKey: .launchAtLogin)
+                    let result = sut.bool(forKey: .launchMinimized)
                     expect(result).to(beTrue())
                 }
                 
                 it("uses sync queue") {
-                    _ = sut.bool(forKey: .launchAtLogin)
+                    _ = sut.bool(forKey: .launchMinimized)
                     queue.verifyCall(withIdentifier: "syncThrowing")
                 }
                 
                 it("calls userDefaults with correct key") {
-                    _ = sut.bool(forKey: .launchAtLogin)
+                    _ = sut.bool(forKey: .launchMinimized)
                     userDefaults
-                        .verifyCall(withIdentifier: "bool", arguments: [UserDefaultsKey.launchAtLogin.rawValue])
+                        .verifyCall(withIdentifier: "bool", arguments: [UserDefaultsKey.launchMinimized.rawValue])
                 }
             }
             
@@ -98,7 +98,7 @@ final class DefaultStorageManagerSpec: QuickSpec {
                 }
                 
                 it("returns false") {
-                    let result = sut.bool(forKey: .launchAtLogin)
+                    let result = sut.bool(forKey: .launchMinimized)
                     expect(result).to(beFalse())
                 }
             }

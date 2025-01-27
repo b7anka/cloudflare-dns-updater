@@ -11,7 +11,8 @@ enum UserDefaultsKey: String {
     
     case cloudflareApiToken
     case cloudflareZoneId
-    case launchAtLogin
+    case launchMinimized
     case lastknownIpAddress
+    case quitWhenClosed
     
 }
